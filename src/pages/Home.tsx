@@ -31,11 +31,11 @@ function Home() {
 					{state.data.map((hospital) => (
 						<Grid item lg={6} sm={4} xs={12} key={hospital.id}>
 							<SimpleCard
+								to={`detail/${hospital.id}`}
 								title={hospital.name}
 								description={hospital.address}
 								image={hospital.image}
-								handleButton={() => console.log('click')}
-							/>
+								handleButton={() => console.log('click')} id={0}							/>
 						</Grid>
 					))}
 				</Grid>
