@@ -1,22 +1,18 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import * as React from 'react';
 
 interface Props {
 	id: number
     title: string;
     description: string;
     image: string;
-    handleButton: () => void;
-	to: any
+	subDescription: any;
 }
 
-export const SimpleCard = ({title, description, image, handleButton,to} : Props) => {
+export const ViewCard = ({title, description, image, subDescription} : Props) => {
 	return (
 		<Card sx={{ minWidth: 200 }}>
 			<CardMedia
@@ -33,12 +29,10 @@ export const SimpleCard = ({title, description, image, handleButton,to} : Props)
 				<Typography variant='body2' color='text.secondary'>
 					{description}
 				</Typography>
+                <Typography variant='body2' color='text.secondary'>
+					{subDescription}
+				</Typography>
 			</CardContent>
-			<CardActions>
-				<Link to={to} >
-				<Button size='small' onClick={handleButton}>Login</Button>
-				</Link>
-			</CardActions>
 		</Card>
 	);
 }
