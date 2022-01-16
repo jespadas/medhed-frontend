@@ -6,5 +6,5 @@ export interface HospitalModel {
     id: number
     image: string
     name:string
-    shift: ShiftModel
+    shift: ShiftModel[]
 }
