@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
 import { getHospitalById } from '../api/hospital';
 import { DetailState } from '../models/detailState';
 import { HospitalModel } from '../models/hospitalModel';
 import { ViewCard } from '../components/ViewCard';
+import { Form, ManageStatus } from '../components';
 
 const initDetail: HospitalModel = {
 	address: '',
@@ -37,13 +40,39 @@ function Detail() {
 	}, [idHospital]);
 
 	return (
-		<ViewCard
-			title={hospital.name}
-			description={hospital.description}
-			subDescription={hospital.address}
-			id={hospital.id}
-			image={hospital.image}
-		/>
+		<ManageStatus status={state.status}>
+			<div
+				style={{
+					backgroundImage: 'url(' + hospital.image + ')',
+					height: '100vh',
+					width: '100vw',
+					backgroundSize: 'cover',
+					backgroundPosition: 'center',
+				}}
+			>
+				<Container
+					maxWidth='lg'
+					sx={{
+						paddingTop: '5vh',
+					}}
+				>
+					<Grid container spacing={5} justifyItems={'center'}>
+						<Grid item xs={12} sm={6} sx={{ maxWidth: '30em' }}>
+							<ViewCard
+								id={hospital.id}
+								image={hospital.image}
+								title={hospital.name}
+								description={hospital.description}
+								subDescription={hospital.address}
+							/>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<Form />
+						</Grid>
+					</Grid>
+				</Container>
+			</div>
+		</ManageStatus>
 	);
 }
 
