@@ -67,7 +67,7 @@ function Detail() {
 							/>
 						</Grid>
 						<Grid item xs={12} sm={6}>
-							<Form />
+							<Form shifts={hospital.shift} />
 						</Grid>
 					</Grid>
 				</Container>

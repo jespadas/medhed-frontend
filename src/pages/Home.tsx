@@ -35,7 +35,8 @@ function Home() {
 								title={hospital.name}
 								description={hospital.address}
 								image={hospital.image}
-								handleButton={() => console.log('click')} id={0}							/>
+								handleButton={() => {}} 
+								id={hospital.id} />
 						</Grid>
 					))}
 				</Grid>
