@@ -14,6 +14,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import { CreateReservationRest } from '../models/reservationModel';
 import { ShiftModel } from '../models/shiftModel';
+import { createReservation } from '../api/hospital';
 
 const currentDate = new Date();
 const initReservation: CreateReservationRest = {
@@ -32,14 +33,11 @@ export const Form = ({ shifts }: Props) => {
 	const [editedReservation, setEditedReservation] =
 		useState<CreateReservationRest>(initReservation);
 
-	const setIdHospital = () => {
-		setEditedReservation({
-			...editedReservation,
-			hospitalId: idHospital,
-		});
-	};
+	const [isAccepted, setIsAccepted] = useState(false);
 
 	const handleChangeShift = (e: any) => {
+		console.log(e);
+		
 		setEditedReservation({
 			...editedReservation,
 			shiftId: e.target.value,
@@ -50,7 +48,7 @@ export const Form = ({ shifts }: Props) => {
 		const setIdHospital = () => {
 			setEditedReservation({
 				...editedReservation,
-				hospitalId: idHospital,
+				hospitalId: Number(idHospital),
 			});
 		};
 
@@ -58,7 +56,35 @@ export const Form = ({ shifts }: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	console.log(editedReservation);
+	const isInvalid = {
+		date: (isAccepted && (editedReservation.date === null)) || editedReservation.date?.toString() === 'Invalid Date',
+		hospitalId: isAccepted && editedReservation.hospitalId === 0,
+		patient: isAccepted && editedReservation.patient === 0,
+		shiftId: isAccepted && editedReservation.shiftId === 0,
+	}
+
+	const isFormValid = () => {
+		const isValid = Object.values(isInvalid).findIndex(item => item) === -1;
+		return isValid;
+	}
+	
+	const saveReservation = async () => {
+		try {
+			const response = await createReservation(editedReservation);
+			console.log(response);
+			
+		} catch (error) {
+			console.log(error);
+			
+		}
+	};
+
+	const handleSave = () => {
+		setIsAccepted(true);
+		if (isFormValid()) {
+			saveReservation();
+		}
+	}
 
 	return (
 		<Paper sx={{ padding: '2em' }}>
@@ -85,7 +111,7 @@ export const Form = ({ shifts }: Props) => {
 							hospitalId: Number(e.target.value),
 						})
 					}
-					error
+					error={isInvalid.hospitalId}
 				/>
 				<TextField
 					type='number'
@@ -105,6 +131,7 @@ export const Form = ({ shifts }: Props) => {
 							patient: e.target.value !== '' ? Number(e.target.value) : '',
 						});
 					}}
+					error={isInvalid.patient}
 				/>
 				<LocalizationProvider dateAdapter={AdapterDateFns}>
 					<DesktopDatePicker
@@ -118,7 +145,7 @@ export const Form = ({ shifts }: Props) => {
 								date,
 							});
 						}}
-						renderInput={(params) => <TextField {...params} />}
+						renderInput={(params) => <TextField {...params} error={isInvalid.date}/>}
 					/>
 				</LocalizationProvider>
 				<FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -129,6 +156,7 @@ export const Form = ({ shifts }: Props) => {
 						value={editedReservation.shiftId}
 						label='Shift'
 						onChange={handleChangeShift}
+						error={isInvalid.shiftId}
 					>
 						<MenuItem value={0}>Select a shift</MenuItem>
 						{shifts.map((shift) => (
@@ -146,7 +174,7 @@ export const Form = ({ shifts }: Props) => {
 					paddingTop: '1em',
 				}}
 			>
-				<Button variant='contained'>Make the reservaton</Button>
+				<Button variant='contained' onClick={handleSave}>Make the reservaton</Button>
 			</div>
 		</Paper>
 	);
