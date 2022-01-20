@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test in <SimpleCard /> Should display the component 1`] = `
+<ForwardRef(Card)
+  sx={
+    Object {
+      "minWidth": 200,
+    }
+  }
+>
+  <ForwardRef(CardMedia)
+    alt="hospital"
+    component="img"
+    height="140"
+    image="https://localhost:3000/img.png"
+    title="the hospital title"
+  />
+  <ForwardRef(CardContent)>
+    <ForwardRef(Typography)
+      component="div"
+      gutterBottom={true}
+      sx={
+        Object {
+          "color": "white",
+        }
+      }
+      variant="h5"
+    >
+      the hospital title
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      color="text.secondary"
+      variant="body2"
+    >
+      this is the hospital description
+    </ForwardRef(Typography)>
+  </ForwardRef(CardContent)>
+  <ForwardRef(CardActions)>
+    <Link
+      to="https://localhost:3000/img.png"
+    >
+      <ForwardRef(Button)
+        onClick={[Function]}
+        size="small"
+      >
+        Login
+      </ForwardRef(Button)>
+    </Link>
+  </ForwardRef(CardActions)>
+</ForwardRef(Card)>
+`;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test in <Home /> Should be displayed correctly 1`] = `
+<ManageStatus
+  status="loading"
+>
+  <ForwardRef(Container)
+    maxWidth="lg"
+  >
+    <ForwardRef(Grid)
+      container={true}
+      spacing={4}
+    />
+  </ForwardRef(Container)>
+</ManageStatus>
+`;

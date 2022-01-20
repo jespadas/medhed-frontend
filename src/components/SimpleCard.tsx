@@ -27,7 +27,7 @@ export const SimpleCard = ({title, description, image, handleButton,to} : Props)
                 title={title}
 			/>
 			<CardContent>
-				<Typography gutterBottom variant='h5' component='div'>
+				<Typography gutterBottom variant='h5' component='div' sx={{color: "white"}}>
 					{title}
 				</Typography>
 				<Typography variant='body2' color='text.secondary'>

@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "Home.test.tsx", "Details.test.tsx"  ]
 }
