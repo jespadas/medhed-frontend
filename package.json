@@ -1,6 +1,7 @@
 {
   "name": "medhed-frontend",
   "version": "0.1.0",
+  "homepage": "https://jespadas.github.io/medhed-frontend/",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "^2.11.0",
@@ -35,7 +36,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -r https://$GH_TOKEN@github.com/jespadas/medhed-frontend"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +61,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.11",
     "@types/react-router-dom": "^5.3.2",
+    "gh-pages": "^3.2.3",
     "nodemon": "^2.0.15"
   }
 }
