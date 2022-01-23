@@ -23,5 +23,5 @@ jobs:
           git config --global user.name jespadas
       - name: deploy run deploy
         run: npm run deploy
-        env: 
+        env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
