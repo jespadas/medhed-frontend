@@ -1,1 +1,0 @@
-# medhed-frontend
