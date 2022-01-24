@@ -1,3 +1,7 @@
+# Status 
+
+[![pages-build-deployment](https://github.com/jespadas/medhed-frontend/actions/workflows/pages/pages-build-deployment/badge.svg?branch=jespadas%2Fjespadas)](https://github.com/jespadas/medhed-frontend/actions/workflows/pages/pages-build-deployment)
+
 # Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
